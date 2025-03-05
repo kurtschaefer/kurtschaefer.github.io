@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html style = "height:100%">
+    <body>
+    <header>
+    	<h1><br>Lab Calculation Check: Unknown Metal Carbonate<br></h1>
+    </header>
+        <div id = "black" align = "center">
+            <br>
+            
+            <div id = "questions">
+            <h3> Note: do <u>NOT</u> include units when you enter data </h3>
+                <p><b>mass of crucible (g)</b></p>
+                <input id = "val0" type = "text">
+                <p><b>mass of crucible with M<sub>2</sub>CO<sub>3</sub> after final heating (g)</b></p>
+                <input id = "val1" type = "text">
+                <p><b>mass of filter paper (g)</b></p>
+                <input id = "val2" type = "text">
+                <p><b>mass of filter paper plus CaCO<sub>3</sub> product (g)</b></p>
+                <input id = "val3" type = "text">
+                <p></p>
+                <input id = "submit" onclick = "onSubmit();" type = "submit" value = "Calculate">
+            </div>
+            
+            <p></p>
+            <div id = "answers" align = "center">
+                <p><b>Molar Mass of M<sub>2</sub>CO<sub>3</sub> (g/mol): </b></p>
+                <p id = "ans0"></p>
+                
+
+              
+            </div>
+            <br>
+        </div>
+        
+        <script>
+            function onSubmit() {
+                var val0 = getValue("val0");
+                var val1 = getValue("val1");
+				var val2 = getValue("val2");
+                var val3 = getValue("val3");
+                
+				var massM2CO3 = val1 - val0;
+				var massCaCO3 = val3 - val2;
+				var molesCaCO3 = massCaCO3/100.09;
+				var molarmassM2CO3 = massM2CO3/molesCaCO3;
+                
+                var ans0 = massM2CO3/molesCaCO3;
+                
+                
+                setText("ans0", ans0);
+              
+            }
+            
+             function getValue(id) {
+                var value = document.getElementById(id).value
+                if (isNaN(value)) {
+                    alert("Warning: \"" + value + "\" is not a number. This will mess things up!");
+                    return value;
+                }
+                try {
+                    var val =  parseFloat(value);
+                    return val;
+                } catch(err) {
+                    alert("Warning: \"" + value + "\" is not a number. This will mess things up!");
+                    return value;
+                }
+            }
+            
+            function setText(id, text) {
+                document.getElementById(id).innerHTML = text;
+            }
+        </script>
+        
+        <style>
+            body {
+                background: linear-gradient(to top, rgb(0, 134, 176) , white, rgb(0, 134, 176));
+            }
+            #black {
+                position: absolute;
+                width: 51%;
+                /*height: 1000%;*/
+                left: 25%;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
+                
+            }
+            #questions {
+                width: 98%;
+                position: relative;
+                background-color: white;
+                border-radius: 10px; 
+                font-family: Lucida Console;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+            #answers {
+                width: 98%;
+                position: relative;
+                background-color: white;
+                border-radius: 10px;
+                font-family: Lucida Console;
+                padding-top: 5px;
+                padding-bottom: 5px;
+            }
+        </style>
+        
+    </body>
+</html> 
